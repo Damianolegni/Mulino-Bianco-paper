@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline Mulino Bianco — 1975 → Oggi → Futuro</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#faf9f6;color:#2c2c2a;padding:24px 16px;overflow-x:hidden;}
+h1{font-size:17px;font-weight:700;color:#1a1a2e;margin-bottom:4px;}
+.subtitle{font-size:12px;color:#888;margin-bottom:28px;}
+.timeline{position:relative;padding-left:32px;}
+.line{position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#CECBF6,#534AB7,#854F0B,#EF9F27);}
+.node{position:relative;margin-bottom:28px;opacity:0;transform:translateX(-18px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.node.visible{opacity:1;transform:translateX(0);}
+.dot{position:absolute;left:-26px;top:4px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px currentColor;}
+.era-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:6px;}
+.card-tl{background:#fff;border:0.5px solid #d3d1c7;border-radius:10px;padding:14px 16px;}
+.year{font-size:20px;font-weight:700;margin-bottom:4px;}
+.event-title{font-size:13px;font-weight:600;margin-bottom:4px;}
+.event-desc{font-size:12px;color:#666;line-height:1.6;}
+.cbbe-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.cbbe-pill{font-size:10px;padding:2px 8px;border-radius:8px;font-weight:500;}
+.n-past{background:#EEEDFE;color:#534AB7;}
+.n-now{background:#faeeda;color:#854F0B;}
+.n-future{background:#e1f5ee;color:#0f6e56;}
+.dot-past{color:#534AB7;}
+.dot-now{color:#854F0B;}
+.dot-future{color:#0f6e56;}
+.section-divider{font-size:11px;font-weight:700;color:#aaa;letter-spacing:0.08em;text-transform:uppercase;margin:8px 0 20px 0;padding-left:2px;border-left:3px solid #d3d1c7;padding-left:8px;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px #EF9F27;}50%{box-shadow:0 0 0 5px rgba(239,159,39,0.3);}}
+.dot-future-anim{animation:pulse 2s infinite;}
+</style>
+</head>
+<body>
+<h1>Mulino Bianco — Da dove viene, dove è, dove può andare</h1>
+<p class="subtitle">Clicca su una tappa per espandere i dettagli · Dati CBBE basati sull'analisi del paper</p>
+
+<div class="timeline">
+  <div class="line"></div>
+
+  <div class="section-divider">Heritage (1975–2000)</div>
+
+  <div class="node" style="transition-delay:0.1s">
+    <div class="dot dot-past" style="background:#534AB7;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-past">Fondazione</div>
+      <div class="year">1975</div>
+      <div class="event-title">Nasce Mulino Bianco</div>
+      <div class="event-desc">Barilla lancia il brand in un'Italia segnata dalla crisi petrolifera e dagli anni di piombo. Il nome evoca farina macinata lentamente, lavoro artigianale, semplicità rurale: una tradizione inventata che diventa reale nella memoria collettiva (Borghini et al., 2022).</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-past">Identity in costruzione</span><span class="cbbe-pill n-past">Nostalgia sociologica</span></div>
+    </div>
+  </div>
+
+  <div class="node" style="transition-delay:0.2s">
+    <div class="dot dot-past" style="background:#7F77DD;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-past">Espansione</div>
+      <div class="year">1980–1990</div>
+      <div class="event-title">Il Mulino entra nella TV italiana</div>
+      <div class="event-desc">Le campagne televisive con il mulino toscano, il grano dorato e le colazioni familiari perfette costruiscono un immaginario condiviso da milioni di italiani. Brand awareness raggiunge livelli straordinari. La prima direttrice IMC — la TV come canale primario — si consolida.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-past">Brand meaning forte</span><span class="cbbe-pill n-past">TV dominante</span></div>
+    </div>
+  </div>
+
+  <div class="node" style="transition-delay:0.3s">
+    <div class="dot dot-past" style="background:#AFA9EC;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-past">Consolidamento</div>
+      <div class="year">1990–2000</div>
+      <div class="event-title">Campagna "La colazione degli italiani"</div>
+      <div class="event-desc">Mulino Bianco si posiziona come simbolo culturale dell'identità alimentare italiana, contrapponendo la propria colazione ai modelli stranieri. Brand meaning raggiunge il massimo storico. Associazioni di naturalità e famiglia sono ormai radicate nel codice culturale nazionale.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-past">Meaning al picco</span><span class="cbbe-pill n-past">Identità nazionale</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider">Presente (2000–2025)</div>
+
+  <div class="node" style="transition-delay:0.4s">
+    <div class="dot dot-now" style="background:#EF9F27;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-now">Transizione digitale</div>
+      <div class="year">2009</div>
+      <div class="event-title">Piattaforma "Nel mulino che vorrei"</div>
+      <div class="event-desc">Primo tentativo strutturato di co-creazione digitale: i consumatori co-progettano nuovi prodotti generando big data di qualità (Troisi et al., 2018). Iniziativa pionieristica ma episodica, non consolidata in sistema permanente. Prefigura la Direttrice 2 della proposta strategica.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-now">Co-creazione tentata</span><span class="cbbe-pill n-now">Resonance potenziale</span></div>
+    </div>
+  </div>
+
+  <div class="node" style="transition-delay:0.5s">
+    <div class="dot dot-now" style="background:#D85A30;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-now">Diagnosi attuale</div>
+      <div class="year">2024–2025</div>
+      <div class="event-title">Sondaggio primario — Dati CBBE empirici</div>
+      <div class="event-desc">La rilevazione su 35 rispondenti (età media 30 anni) restituisce la fotografia precisa del brand oggi: Identity 84,6 e Response 72,3 straordinariamente solidi, ma Resonance a soli 42,5. Gap di 29,8 punti tra sentimento e comportamento. Il brand è amato, ma non praticato.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-now">Identity 84,6/100</span><span class="cbbe-pill n-now">Resonance 42,5/100</span><span class="cbbe-pill n-now">Gap −29,8 pt</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider">Futuro proposto (2025–2035)</div>
+
+  <div class="node" style="transition-delay:0.6s">
+    <div class="dot dot-future dot-future-anim" style="background:#1D9E75;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-future">Direttrice 1</div>
+      <div class="year">2025–2027</div>
+      <div class="event-title">Qualità reale degli ingredienti</div>
+      <div class="event-desc">Riformulazione degli ingredienti (riduzione zuccheri aggiunti, farine meno raffinate, zero conservanti). Comunicazione trasparente della filiera corta. Impatto atteso: Brand meaning +8–12 pt, Brand response +3–5 pt. Risponde direttamente alla richiesta delle risposte aperte del sondaggio.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-future">Meaning +10 est.</span><span class="cbbe-pill n-future">Autenticità reale</span></div>
+    </div>
+  </div>
+
+  <div class="node" style="transition-delay:0.7s">
+    <div class="dot dot-future dot-future-anim" style="background:#0F6E56;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-future">Direttrice 2</div>
+      <div class="year">2026–2028</div>
+      <div class="event-title">Community digitale a bassa soglia</div>
+      <div class="event-desc">Ecosistema digitale leggero: condivisione ricette, votazione edizioni limitate, contenuti esclusivi sulla filiera. Niente co-progettazione strutturata (Q18 = 2,40/5). Impatto atteso: Resonance +10–18 pt, principalmente su Q12 (acquisto) e Q13 (raccomandazione). Il moltiplicatore più diretto della resonance.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-future">Resonance +15 est.</span><span class="cbbe-pill n-future">Low-threshold UX</span></div>
+    </div>
+  </div>
+
+  <div class="node" style="transition-delay:0.8s">
+    <div class="dot dot-future dot-future-anim" style="background:#085041;"></div>
+    <div class="card-tl">
+      <div class="era-tag n-future">Direttrice 3</div>
+      <div class="year">2027–2030</div>
+      <div class="event-title">Frame "Nostalgia Futura"</div>
+      <div class="event-desc">Nuovo frame narrativo: non custode del passato perduto ma artefice di un futuro migliore. Campagna cross-generazionale con estetica contemporanea ma valori storici coerenti. Validato dalle risposte aperte: "ricordare l'infanzia ma essere più aderente alla realtà odierna". Impatto atteso: Identity +5–8 pt nei giovani, Resonance +8–10 pt per effetto traino.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-future">Resonance +9 est.</span><span class="cbbe-pill n-future">Cross-generazionale</span></div>
+    </div>
+  </div>
+
+  <div class="node" style="transition-delay:0.9s">
+    <div class="dot dot-future" style="background:#EF9F27;border:2px solid #fff;box-shadow:0 0 0 2px #EF9F27;"></div>
+    <div class="card-tl" style="border-color:#EF9F27;">
+      <div class="era-tag" style="background:#faeeda;color:#854F0B;">Obiettivo</div>
+      <div class="year" style="color:#854F0B;">2030–2035</div>
+      <div class="event-title">Resonance target: 70–75/100</div>
+      <div class="event-desc">Con l'attuazione integrata delle tre direttrici, il simulatore stima una resonance proiettata tra 68 e 77/100, colmando circa il 50–60% del gap attuale di 57,5 punti. Il brand conserva la propria identità storica e diventa rilevante per le nuove generazioni senza tradire se stesso.</div>
+      <div class="cbbe-row"><span class="cbbe-pill n-now">Da 42,5 → 70–75</span><span class="cbbe-pill n-future">Gap colmato ~55%</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const nodes = document.querySelectorAll('.node');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+nodes.forEach(n => obs.observe(n));
+</script>
+</body>
+</html>

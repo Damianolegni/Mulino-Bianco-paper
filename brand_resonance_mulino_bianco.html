@@ -1,0 +1,98 @@
+<style>
+.level { cursor: pointer; transition: opacity 0.18s; }
+.level:hover { opacity: 0.85; }
+.panel { display: none; padding: 14px 18px; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); margin-top: 12px; font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+.panel.active { display: block; }
+.panel-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 6px; }
+.score-bar { height: 6px; border-radius: 3px; background: var(--color-border-tertiary); margin-top: 8px; overflow: hidden; }
+.score-fill { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+.score-label { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; display: flex; justify-content: space-between; }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 6px; flex-shrink: 0; }
+.legend-row { display: flex; align-items: center; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+</style>
+<h2 class="sr-only">Piramide di brand resonance applicata a Mulino Bianco: modello interattivo con quattro livelli cliccabili</h2>
+<div style="padding: 1rem 0;">
+  <svg width="100%" viewBox="0 0 680 340" role="img">
+    <title>Piramide CBBE di Keller applicata a Mulino Bianco</title>
+    <desc>Visualizzazione interattiva dei quattro livelli del modello Customer-Based Brand Equity applicato al brand Mulino Bianco</desc>
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+    </defs>
+
+    <g class="level" onclick="showPanel('resonance')">
+      <polygon points="340,28 440,108 240,108" fill="#534AB7" opacity="0.92"/>
+      <text x="340" y="74" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#EEEDFE">Brand resonance</text>
+    </g>
+
+    <g class="level" onclick="showPanel('response')">
+      <polygon points="240,114 440,114 480,194 200,194" fill="#7F77DD" opacity="0.88"/>
+      <text x="340" y="154" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#EEEDFE">Brand response</text>
+    </g>
+
+    <g class="level" onclick="showPanel('meaning')">
+      <polygon points="200,200 480,200 520,280 160,280" fill="#AFA9EC" opacity="0.85"/>
+      <text x="340" y="240" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#26215C">Brand meaning</text>
+    </g>
+
+    <g class="level" onclick="showPanel('identity')">
+      <polygon points="160,286 520,286 560,326 120,326" fill="#CECBF6" opacity="0.85"/>
+      <text x="340" y="308" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#26215C">Brand identity (salience)</text>
+    </g>
+
+    <text x="8" y="68" text-anchor="start" font-size="11" fill="#5F5E5A">Livello 4</text>
+    <text x="8" y="154" text-anchor="start" font-size="11" fill="#5F5E5A">Livello 3</text>
+    <text x="8" y="240" text-anchor="start" font-size="11" fill="#5F5E5A">Livello 2</text>
+    <text x="8" y="308" text-anchor="start" font-size="11" fill="#5F5E5A">Livello 1</text>
+
+    <text x="600" y="68" text-anchor="start" font-size="11" fill="#5F5E5A">Relazione</text>
+    <text x="600" y="154" text-anchor="start" font-size="11" fill="#5F5E5A">Risposta</text>
+    <text x="600" y="240" text-anchor="start" font-size="11" fill="#5F5E5A">Significato</text>
+    <text x="600" y="308" text-anchor="start" font-size="11" fill="#5F5E5A">Identità</text>
+  </svg>
+
+  <p style="font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin: 0 0 12px;">Clicca su un livello per visualizzare l'analisi applicata a Mulino Bianco</p>
+
+  <div id="panel-identity" class="panel active">
+    <div class="panel-title">Livello 1 — Brand identity: chi è Mulino Bianco?</div>
+    <p>Brand awareness elevatissima nel mercato italiano della colazione. Il nome e il logo del mulino bianco sono immediatamente riconoscibili da oltre il 95% dei consumatori italiani. La salienza del brand è costruita su decenni di comunicazione coerente e sulla presenza capillare nella GDO.</p>
+    <div class="score-bar"><div class="score-fill" style="width:93%;background:#534AB7;"></div></div>
+    <div class="score-label"><span>Consapevolezza</span><span style="font-weight:500;color:var(--color-text-primary);">93 / 100</span></div>
+  </div>
+
+  <div id="panel-meaning" class="panel">
+    <div class="panel-title">Livello 2 — Brand meaning: cosa rappresenta?</div>
+    <p>Il brand incarna valori di naturalità, semplicità rurale e genuinità familiare. Le associazioni di marca (mulino, frumento dorato, campagna toscana) costruiscono un'immagine potente, sebbene basata su una tradizione "inventata" (Borghini et al., 2018). La qualità percepita è alta, ma la modernità del brand è in tensione con la sua natura nostalgica.</p>
+    <div class="score-bar"><div class="score-fill" style="width:82%;background:#7F77DD;"></div></div>
+    <div class="score-label"><span>Qualità percepita</span><span style="font-weight:500;color:var(--color-text-primary);">82 / 100</span></div>
+  </div>
+
+  <div id="panel-response" class="panel">
+    <div class="panel-title">Livello 3 — Brand response: cosa pensano i consumatori?</div>
+    <p>I giudizi dei consumatori sono positivamente orientati: il brand è percepito come affidabile, caldo, familiare. Le emozioni evocate (nostalgia, sicurezza, infanzia) sono tra le più potenti nelle ricerche sul consumatore (Lasaleta et al., 2014). Tuttavia, i segmenti più giovani mostrano un minor livello di engagement emotivo diretto.</p>
+    <div class="score-bar"><div class="score-fill" style="width:71%;background:#AFA9EC;"></div></div>
+    <div class="score-label"><span>Sentiment positivo</span><span style="font-weight:500;color:var(--color-text-primary);">71 / 100</span></div>
+  </div>
+
+  <div id="panel-resonance" class="panel">
+    <div class="panel-title">Livello 4 — Brand resonance: quanto è il legame?</div>
+    <p>La resonance è il livello più critico per Mulino Bianco. L'engagement attivo sui social è moderato rispetto al potenziale del brand. La fedeltà comportamentale è solida tra i 35-55enni, ma la comunità di marca digitale è ancora poco sviluppata. La piattaforma "Nel mulino che vorrei" (Troisi et al., 2018) ha rappresentato un tentativo significativo di co-creazione, ma non è stata consolidata nel tempo.</p>
+    <div class="score-bar"><div class="score-fill" style="width:58%;background:#CECBF6;"></div></div>
+    <div class="score-label"><span>Engagement attivo</span><span style="font-weight:500;color:var(--color-text-primary);">58 / 100</span></div>
+  </div>
+
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;">
+    <div class="legend-row"><span class="legend-dot" style="background:#534AB7;"></span>Forte (90+)</div>
+    <div class="legend-row"><span class="legend-dot" style="background:#7F77DD;"></span>Buono (75-89)</div>
+    <div class="legend-row"><span class="legend-dot" style="background:#AFA9EC;"></span>Moderato (60-74)</div>
+    <div class="legend-row"><span class="legend-dot" style="background:#CECBF6;"></span>Da sviluppare (&lt;60)</div>
+  </div>
+  <p style="font-size:11px;color:var(--color-text-tertiary);margin-top:8px;">Figura 1. Modello CBBE di Keller (2001) applicato a Mulino Bianco. Punteggi stimati su base qualitativa.</p>
+</div>
+<script>
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+}
+</script>

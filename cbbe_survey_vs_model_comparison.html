@@ -1,0 +1,117 @@
+<h2 class="sr-only">Confronto tra i punteggi stimati nel paper e i punteggi empirici del sondaggio per il modello CBBE di Mulino Bianco, con dettaglio per item e segmentazione per fascia d'età</h2>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem;">
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">Rispondenti</div>
+    <div style="font-size:24px;font-weight:500;color:var(--color-text-primary);">35</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">Età media</div>
+    <div style="font-size:24px;font-weight:500;color:var(--color-text-primary);">30,1</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">≤29 anni</div>
+    <div style="font-size:24px;font-weight:500;color:var(--color-text-primary);">26</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:4px;">≥30 anni</div>
+    <div style="font-size:24px;font-weight:500;color:var(--color-text-primary);">9</div>
+  </div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:12px;color:var(--color-text-secondary);">
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#534AB7;"></span>Stima paper (qualitativa)</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#1D9E75;display:inline-block;"></span>Dati sondaggio (empirici)</span>
+</div>
+
+<div style="position:relative;width:100%;height:280px;">
+  <canvas id="cbbe-compare" role="img" aria-label="Grafico a barre che confronta i punteggi stimati nel paper con quelli empirici del sondaggio per i quattro livelli CBBE. Identity: 93 vs 84.6. Meaning: 82 vs 72.8. Response: 71 vs 72.3. Resonance: 58 vs 42.5.">Confronto CBBE: Identity 93 paper / 84.6 sondaggio; Meaning 82 / 72.8; Response 71 / 72.3; Resonance 58 / 42.5.</canvas>
+</div>
+
+<div style="margin-top:1.5rem;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Dettaglio per singolo item (media sondaggio, scala 1–5)</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:12px;color:var(--color-text-secondary);">
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#534AB7;"></span>Brand identity</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#7F77DD;"></span>Brand meaning</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#AFA9EC;"></span>Brand response</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#D85A30;"></span>Brand resonance</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#1D9E75;"></span>Proposta strategica</span>
+</div>
+
+<div style="position:relative;width:100%;height:400px;">
+  <canvas id="items-chart" role="img" aria-label="Grafico a barre orizzontali con i punteggi medi di ciascun item del sondaggio, da 1 a 5. I valori più bassi riguardano il seguito sui social (1.29) e il senso di comunità (1.80). I valori più alti riguardano il riconoscimento del logo (4.89) e i ricordi d'infanzia (4.00).">Item scores: logo 4.89, infanzia 4.00, visual ID 4.06, top-of-mind 3.74, qualità 3.71, campagna 3.94, fiducia 3.57, pubblicità positiva 3.51, autentico 3.37, qualità-prezzo 3.43, raccomanda 2.74, acquisto 2.46, premium 2.34, community 1.80, social 1.29.</canvas>
+</div>
+
+<div style="margin-top:1.5rem;font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Segmentazione per età — punteggi CBBE (/100)</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:12px;color:var(--color-text-secondary);">
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#534AB7;"></span>≤29 anni (n=26)</span>
+  <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:2px;background:#D85A30;"></span>≥30 anni (n=9)</span>
+</div>
+<div style="position:relative;width:100%;height:240px;">
+  <canvas id="age-chart" role="img" aria-label="Grafico a barre raggruppate per fascia d'età. I giovani sotto i 30 anni mostrano punteggi leggermente superiori agli adulti su Identity e Meaning, ma entrambi i gruppi mostrano una caduta marcata sulla Resonance.">Età: Identity giovani 85.9 adulti 80.7; Meaning giovani 75.4 adulti 65.0; Response giovani 72.5 adulti 71.7; Resonance giovani 43.7 adulti 39.1.</canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const paperScores = [93, 82, 71, 58];
+const surveyScores = [84.6, 72.8, 72.3, 42.5];
+const levels = ['Brand identity','Brand meaning','Brand response','Brand resonance'];
+
+new Chart(document.getElementById('cbbe-compare'), {
+  type: 'bar',
+  data: {
+    labels: levels,
+    datasets: [
+      { label: 'Stima paper', data: paperScores, backgroundColor: '#534AB7', borderRadius: 4 },
+      { label: 'Sondaggio empirico', data: surveyScores, backgroundColor: '#1D9E75', borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 100, ticks: { font: { size: 11 }, callback: v => v + '%' },
+           grid: { color: 'rgba(128,128,128,0.12)' } },
+      x: { ticks: { font: { size: 12 } }, grid: { display: false } }
+    }
+  }
+});
+
+const itemLabels = ['Q1 Logo','Q2 Top-mind','Q3 Visual ID','Q4 Qualità','Q5 Naturalità','Q6 Campagna','Q7 Prezzo-qualità','Q8 Pub. positiva','Q9 Infanzia','Q10 Fiducia','Q11 Autentico','Q12 Acquisto','Q13 Raccomanda','Q14 Social','Q15 Community','Q16 Premium','Q17 Sostenibilità','Q18 Co-design','Q19 Evoluzione'];
+const itemData = [4.89,3.74,4.06,3.71,3.47,3.94,3.43,3.51,4.00,3.57,3.37,2.46,2.74,1.29,1.80,2.34,3.09,2.40,3.43];
+const itemColors = ['#534AB7','#534AB7','#534AB7','#7F77DD','#7F77DD','#7F77DD','#7F77DD','#AFA9EC','#AFA9EC','#AFA9EC','#AFA9EC','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#1D9E75','#1D9E75','#1D9E75'];
+
+new Chart(document.getElementById('items-chart'), {
+  type: 'bar',
+  data: {
+    labels: itemLabels,
+    datasets: [{ data: itemData, backgroundColor: itemColors, borderRadius: 3 }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { min: 0, max: 5, ticks: { font: { size: 11 } }, grid: { color: 'rgba(128,128,128,0.12)' } },
+      y: { ticks: { font: { size: 11 } }, grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('age-chart'), {
+  type: 'bar',
+  data: {
+    labels: levels,
+    datasets: [
+      { label: '≤29 anni', data: [85.9, 75.4, 72.5, 43.7], backgroundColor: '#534AB7', borderRadius: 4 },
+      { label: '≥30 anni', data: [80.7, 65.0, 71.7, 39.1], backgroundColor: '#D85A30', borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 100, ticks: { font: { size: 11 }, callback: v => v + '%' }, grid: { color: 'rgba(128,128,128,0.12)' } },
+      x: { ticks: { font: { size: 12 } }, grid: { display: false } }
+    }
+  }
+});
+</script>

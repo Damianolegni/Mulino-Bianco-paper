@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mulino Bianco — Hub Elementi Interattivi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#faf9f6;color:#2c2c2a;padding:32px 24px;max-width:760px;margin:auto;}
+h1{font-size:22px;font-weight:700;color:#1a1a2e;margin-bottom:6px;}
+.subtitle{font-size:13px;color:#888;margin-bottom:32px;line-height:1.6;}
+.card{background:#fff;border:0.5px solid #d3d1c7;border-radius:14px;padding:20px 22px;margin-bottom:16px;display:flex;gap:18px;align-items:flex-start;transition:box-shadow 0.2s;}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+.icon{font-size:28px;min-width:40px;text-align:center;margin-top:2px;}
+.card-body{flex:1;}
+.card-title{font-size:15px;font-weight:600;color:#2c2c2a;margin-bottom:4px;}
+.card-desc{font-size:12px;color:#666;line-height:1.6;margin-bottom:10px;}
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px;margin-right:4px;margin-bottom:4px;}
+.tag-fig{background:#EEEDFE;color:#534AB7;}
+.tag-int{background:#e1f5ee;color:#0f6e56;}
+.tag-ai{background:#faeeda;color:#854F0B;}
+.btn{display:inline-block;font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;background:#534AB7;color:#fff;text-decoration:none;transition:background 0.2s;}
+.btn:hover{background:#3d358f;}
+.btn-sec{background:#f0efe9;color:#2c2c2a;}
+.btn-sec:hover{background:#e0ded6;}
+.section-label{font-size:11px;font-weight:700;color:#aaa;letter-spacing:0.08em;text-transform:uppercase;margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid #e8e6e0;}
+.source-note{font-size:11px;color:#aaa;margin-top:24px;line-height:1.6;padding:12px 16px;background:#f5f4f0;border-radius:8px;}
+</style>
+</head>
+<body>
+<h1>Mulino Bianco — Elementi Interattivi del Paper</h1>
+<p class="subtitle">Hub di accesso agli strumenti interattivi sviluppati a supporto del paper "Brand Equity e Strategia di Marca: Il Caso Mulino Bianco tra Nostalgia, Autenticità e Rilancio Digitale".<br>Modulo di Marketing Generale — LUISS Guido Carli · A.A. 2024–2025 · Damiano Legni</p>
+
+<div class="section-label">Figure CBBE — Modelli interattivi</div>
+
+<div class="card">
+  <div class="icon">🔺</div>
+  <div class="card-body">
+    <div class="card-title">Figura 1 — Modello CBBE: stima qualitativa preliminare</div>
+    <div class="card-desc">Piramide CBBE di Keller (2001) applicata a Mulino Bianco con punteggi stimati su base qualitativa e fonti secondarie. Clicca su ogni livello per visualizzare l'analisi dettagliata. Punteggi: Identity 93 · Meaning 82 · Response 71 · Resonance 58.</div>
+    <span class="tag tag-fig">Figura 1</span><span class="tag tag-int">Interattivo</span><span class="tag tag-fig">CBBE Keller 2001</span>
+    <br><br>
+    <a href="brand_resonance_mulino_bianco_qualitativo.html" class="btn">Apri Figura 1</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="icon">📊</div>
+  <div class="card-body">
+    <div class="card-title">Figura 2 — Modello CBBE: punteggi empirici (n=35)</div>
+    <div class="card-desc">Stessa piramide con punteggi derivati dal sondaggio primario su 35 rispondenti (età media 30,1 anni). Clicca su ogni livello per i dettagli degli item e lo scostamento rispetto alla stima. Punteggi: Identity 84,6 · Meaning 72,8 · Response 72,3 · Resonance 42,5.</div>
+    <span class="tag tag-fig">Figura 2</span><span class="tag tag-int">Interattivo</span><span class="tag tag-fig">Dati empirici n=35</span>
+    <br><br>
+    <a href="brand_resonance_mulino_bianco_empirico.html" class="btn">Apri Figura 2</a>
+  </div>
+</div>
+
+<div class="section-label">Figure 3–5 — Grafici comparativi del sondaggio</div>
+
+<div class="card">
+  <div class="icon">📈</div>
+  <div class="card-body">
+    <div class="card-title">Figure 3–5 — Confronto stime vs empirici, item e segmentazione età</div>
+    <div class="card-desc">Tre grafici interattivi: (3) confronto diretto tra stima paper e dato empirico per i 4 livelli CBBE; (4) punteggi medi per singolo item (Q1–Q19); (5) segmentazione per fascia d'età ≤29 anni (n=26) vs ≥30 anni (n=9). Tutti basati sui dati del sondaggio primario.</div>
+    <span class="tag tag-fig">Figure 3–5</span><span class="tag tag-int">Interattivo</span><span class="tag tag-fig">Chart.js</span>
+    <br><br>
+    <a href="cbbe_survey_comparison_charts.html" class="btn">Apri Figure 3–5</a>
+  </div>
+</div>
+
+<div class="section-label">Strumenti strategici</div>
+
+<div class="card">
+  <div class="icon">🎛️</div>
+  <div class="card-body">
+    <div class="card-title">Simulatore delle 3 Direttrici Strategiche</div>
+    <div class="card-desc">Strumento interattivo per simulare l'impatto delle tre direttrici proposte (qualità ingredienti, community digitale, nostalgia futura) sui livelli CBBE. Slider regolabili per intensità di investimento. Coefficienti basati su Liu & Wang (2019) e Keller (2016).</div>
+    <span class="tag tag-int">Simulatore</span><span class="tag tag-int">Direttrice 1–2–3</span><span class="tag tag-fig">Cap. 5</span>
+    <br><br>
+    <a href="simulatore_direttrici.html" class="btn">Apri Simulatore</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="icon">🕰️</div>
+  <div class="card-body">
+    <div class="card-title">Timeline animata — 1975 → Oggi → 2035</div>
+    <div class="card-desc">Evoluzione storica e prospettica del brand Mulino Bianco. Dall'heritage del 1975 alla diagnosi empirica del 2025, fino alle tre direttrici strategiche proiettate al 2030–2035. Animazione scroll-based con dati CBBE per ogni tappa.</div>
+    <span class="tag tag-int">Timeline</span><span class="tag tag-int">Animata</span><span class="tag tag-fig">Heritage → Futuro</span>
+    <br><br>
+    <a href="timeline_mulino_bianco.html" class="btn">Apri Timeline</a>
+  </div>
+</div>
+
+<div class="section-label">Rappresentazioni visive AI delle 3 Direttrici</div>
+
+<div class="card">
+  <div class="icon">🌾</div>
+  <div class="card-body">
+    <div class="card-title">Direttrice 1 — Naturalità reale vs simbolica</div>
+    <div class="card-desc">Rappresentazione visiva generata con AI della prima direttrice strategica: la transizione dal narrative romantico di naturalità verso un impegno concreto sulla qualità degli ingredienti e sulla filiera corta. Figura di supporto al Cap. 5.2.</div>
+    <span class="tag tag-ai">Immagine AI</span><span class="tag tag-fig">Direttrice 1</span><span class="tag tag-fig">Cap. 5.2</span>
+    <br><br>
+    <a href="direttrice1_naturalita.html" class="btn">Apri Figura</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="icon">💬</div>
+  <div class="card-body">
+    <div class="card-title">Direttrice 2 — Community digitale a bassa soglia</div>
+    <div class="card-desc">Rappresentazione visiva della seconda direttrice: l'ecosistema di community digitale leggera proposto come alternativa alla co-progettazione strutturata (Q18 = 2,40/5). Figura di supporto al Cap. 5.3.</div>
+    <span class="tag tag-ai">Immagine AI</span><span class="tag tag-fig">Direttrice 2</span><span class="tag tag-fig">Cap. 5.3</span>
+    <br><br>
+    <a href="direttrice2_community.html" class="btn">Apri Figura</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="icon">✨</div>
+  <div class="card-body">
+    <div class="card-title">Direttrice 3 — Nostalgia Futura</div>
+    <div class="card-desc">Rappresentazione visiva del frame "nostalgia futura": il brand non come custode del passato perduto, ma come artefice di un futuro migliore. Validato dalle risposte aperte del sondaggio. Figura di supporto al Cap. 5.4.</div>
+    <span class="tag tag-ai">Immagine AI</span><span class="tag tag-fig">Direttrice 3</span><span class="tag tag-fig">Cap. 5.4</span>
+    <br><br>
+    <a href="direttrice3_nostalgia_futura.html" class="btn">Apri Figura</a>
+  </div>
+</div>
+
+<div class="source-note">
+  <strong>Nota tecnica.</strong> Tutti gli elementi sono file HTML autonomi scaricabili e apribili localmente con qualsiasi browser. Non richiedono connessione internet. Per la visualizzazione ottimale si consiglia Google Chrome o Firefox. I link del paper Word rimandano a questi file: assicurarsi che tutti i file .html si trovino nella stessa cartella del documento .docx.
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulatore Direttrici Strategiche — Mulino Bianco</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f4f0; color: #2c2c2a; padding: 24px 16px; }
+  h1 { font-size: 18px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #666; margin-bottom: 20px; }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 10px; padding: 12px; text-align: center; }
+  .metric-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+  .metric-val { font-size: 22px; font-weight: 600; color: #2c2c2a; }
+  .metric-sub { font-size: 10px; color: #aaa; }
+  .card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 14px; font-weight: 600; color: #2c2c2a; margin-bottom: 10px; }
+  .slider-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .slider-row label { font-size: 12px; color: #666; white-space: nowrap; }
+  .slider-row input[type=range] { flex: 1; accent-color: #534AB7; }
+  .slider-row .pct { font-size: 13px; font-weight: 600; color: #534AB7; min-width: 36px; text-align: right; }
+  .impact-title { font-size: 11px; color: #888; margin-bottom: 6px; }
+  .impact-row { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+  .impact-name { font-size: 11px; color: #666; min-width: 105px; }
+  .impact-bar-bg { flex: 1; height: 8px; border-radius: 4px; background: #e8e6e0; overflow: hidden; }
+  .impact-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s ease; }
+  .impact-val { font-size: 11px; font-weight: 600; min-width: 32px; text-align: right; }
+  .note { font-size: 10px; color: #aaa; margin-top: 8px; line-height: 1.5; }
+  .pyramid-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 12px; padding: 16px; }
+  .pyramid-title { font-size: 14px; font-weight: 600; color: #2c2c2a; margin-bottom: 12px; }
+  .pyr-row { display: flex; align-items: center; gap: 8px; margin: 7px 0; }
+  .pyr-name { font-size: 12px; color: #555; min-width: 115px; }
+  .pyr-bar-bg { flex: 1; height: 10px; border-radius: 5px; background: #e8e6e0; overflow: hidden; }
+  .pyr-bar-fill { height: 100%; border-radius: 5px; transition: width 0.3s ease; }
+  .pyr-val { font-size: 12px; font-weight: 600; min-width: 34px; text-align: right; }
+  .delta { font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; min-width: 42px; text-align: center; }
+  .pos { background: #e1f5ee; color: #0f6e56; }
+  .neu { background: #f1efe8; color: #888; }
+  .disclaimer { font-size: 10px; color: #aaa; margin-top: 10px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<h1>Simulatore Direttrici Strategiche — Mulino Bianco</h1>
+<p class="subtitle">Sposta gli slider per simulare l'impatto delle tre direttrici sui livelli CBBE. Valori base: dati empirici sondaggio primario (n=35).</p>
+
+<div class="metrics">
+  <div class="metric">
+    <div class="metric-label">Resonance attuale</div>
+    <div class="metric-val" id="res-now">42,5</div>
+    <div class="metric-sub">/100 — empirico</div>
+  </div>
+  <div class="metric">
+    <div class="metric-label">Resonance proiettata</div>
+    <div class="metric-val" id="res-proj" style="color:#2c2c2a;">42,5</div>
+    <div class="metric-sub">/100 — simulata</div>
+  </div>
+  <div class="metric">
+    <div class="metric-label">Gap residuo</div>
+    <div class="metric-val" id="gap-val">57,5</div>
+    <div class="metric-sub">pt verso 100</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Direttrice 1 — Qualità reale degli ingredienti e sostenibilità</div>
+  <div class="slider-row">
+    <label>Intensità investimento</label>
+    <input type="range" min="0" max="100" value="0" step="1" id="d1" oninput="update()">
+    <span class="pct" id="d1-label">0%</span>
+  </div>
+  <div class="impact-title">Impatto stimato per livello CBBE:</div>
+  <div class="impact-row"><span class="impact-name">Brand meaning</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d1-m" style="width:0%;background:#185FA5;"></div></div><span class="impact-val" id="d1-mv" style="color:#185FA5;">+0,0</span></div>
+  <div class="impact-row"><span class="impact-name">Brand response</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d1-r" style="width:0%;background:#1D9E75;"></div></div><span class="impact-val" id="d1-rv" style="color:#1D9E75;">+0,0</span></div>
+  <div class="impact-row"><span class="impact-name">Brand resonance</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d1-re" style="width:0%;background:#854F0B;"></div></div><span class="impact-val" id="d1-rev" style="color:#854F0B;">+0,0</span></div>
+  <p class="note">D1 agisce principalmente sul meaning (credibilità naturalità) e, con ritardo, sulla resonance tramite premium pricing. Q5 (naturalità = 3,47/5) è il principale driver da rafforzare.</p>
+</div>
+
+<div class="card">
+  <div class="card-title">Direttrice 2 — Community digitale a bassa soglia</div>
+  <div class="slider-row">
+    <label>Intensità investimento</label>
+    <input type="range" min="0" max="100" value="0" step="1" id="d2" oninput="update()">
+    <span class="pct" id="d2-label">0%</span>
+  </div>
+  <div class="impact-title">Impatto stimato per livello CBBE:</div>
+  <div class="impact-row"><span class="impact-name">Brand response</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d2-r" style="width:0%;background:#1D9E75;"></div></div><span class="impact-val" id="d2-rv" style="color:#1D9E75;">+0,0</span></div>
+  <div class="impact-row"><span class="impact-name">Brand resonance</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d2-re" style="width:0%;background:#854F0B;"></div></div><span class="impact-val" id="d2-rev" style="color:#854F0B;">+0,0</span></div>
+  <p class="note">D2 è il moltiplicatore diretto della resonance: ogni punto di community attiva genera ricadute su acquisto regolare (Q12) e raccomandazione (Q13), i due item più deboli del vertice.</p>
+</div>
+
+<div class="card">
+  <div class="card-title">Direttrice 3 — Frame "nostalgia futura"</div>
+  <div class="slider-row">
+    <label>Intensità investimento</label>
+    <input type="range" min="0" max="100" value="0" step="1" id="d3" oninput="update()">
+    <span class="pct" id="d3-label">0%</span>
+  </div>
+  <div class="impact-title">Impatto stimato per livello CBBE:</div>
+  <div class="impact-row"><span class="impact-name">Brand identity</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d3-i" style="width:0%;background:#0F6E56;"></div></div><span class="impact-val" id="d3-iv" style="color:#0F6E56;">+0,0</span></div>
+  <div class="impact-row"><span class="impact-name">Brand response</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d3-r" style="width:0%;background:#1D9E75;"></div></div><span class="impact-val" id="d3-rv" style="color:#1D9E75;">+0,0</span></div>
+  <div class="impact-row"><span class="impact-name">Brand resonance</span><div class="impact-bar-bg"><div class="impact-bar-fill" id="d3-re" style="width:0%;background:#854F0B;"></div></div><span class="impact-val" id="d3-rev" style="color:#854F0B;">+0,0</span></div>
+  <p class="note">D3 rafforza la salienza nei segmenti giovani (identity) e riattiva l'emozione (response). Q19 evoluzione comunicativa = 3,43/5: il dato più incoraggiante della sezione propositiva.</p>
+</div>
+
+<div class="pyramid-card">
+  <div class="pyramid-title">Piramide CBBE — proiezione simulata</div>
+  <div class="pyr-row"><span class="pyr-name">Brand identity</span><div class="pyr-bar-bg"><div class="pyr-bar-fill" id="tot-i" style="width:84.6%;background:#0F6E56;"></div></div><span class="pyr-val" id="tot-iv">84,6</span><span class="delta neu" id="dlt-i">+0,0</span></div>
+  <div class="pyr-row"><span class="pyr-name">Brand meaning</span><div class="pyr-bar-bg"><div class="pyr-bar-fill" id="tot-m" style="width:72.8%;background:#185FA5;"></div></div><span class="pyr-val" id="tot-mv">72,8</span><span class="delta neu" id="dlt-m">+0,0</span></div>
+  <div class="pyr-row"><span class="pyr-name">Brand response</span><div class="pyr-bar-bg"><div class="pyr-bar-fill" id="tot-r" style="width:72.3%;background:#1D9E75;"></div></div><span class="pyr-val" id="tot-rv">72,3</span><span class="delta neu" id="dlt-r">+0,0</span></div>
+  <div class="pyr-row"><span class="pyr-name">Brand resonance</span><div class="pyr-bar-bg"><div class="pyr-bar-fill" id="tot-re" style="width:42.5%;background:#854F0B;"></div></div><span class="pyr-val" id="tot-rev">42,5</span><span class="delta neu" id="dlt-re">+0,0</span></div>
+  <p class="disclaimer">I coefficienti di impatto sono stime qualitative basate su Liu & Wang (2019) e Keller (2016). Non costituiscono previsioni quantitative validate. Scopo: illustrare la direzione e la priorità relativa degli interventi.</p>
+</div>
+
+<script>
+const BASE = { i:84.6, m:72.8, r:72.3, re:42.5 };
+
+function update() {
+  const d1 = +document.getElementById('d1').value;
+  const d2 = +document.getElementById('d2').value;
+  const d3 = +document.getElementById('d3').value;
+  document.getElementById('d1-label').textContent = d1 + '%';
+  document.getElementById('d2-label').textContent = d2 + '%';
+  document.getElementById('d3-label').textContent = d3 + '%';
+
+  const c = v => v/100;
+  const d1m  = +(c(d1)*12).toFixed(1);
+  const d1r  = +(c(d1)*5).toFixed(1);
+  const d1re = +(c(d1)*7).toFixed(1);
+  const d2r  = +(c(d2)*6).toFixed(1);
+  const d2re = +(c(d2)*18).toFixed(1);
+  const d3i  = +(c(d3)*8).toFixed(1);
+  const d3r  = +(c(d3)*9).toFixed(1);
+  const d3re = +(c(d3)*10).toFixed(1);
+
+  const sb = (id,v,max) => { const e=document.getElementById(id); if(e) e.style.width=Math.min(v/max*100,100)+'%'; };
+  const st = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=(v>=0?'+':'')+v.toFixed(1); };
+
+  sb('d1-m',d1m,12); st('d1-mv',d1m);
+  sb('d1-r',d1r,9);  st('d1-rv',d1r);
+  sb('d1-re',d1re,18); st('d1-rev',d1re);
+  sb('d2-r',d2r,9);  st('d2-rv',d2r);
+  sb('d2-re',d2re,18); st('d2-rev',d2re);
+  sb('d3-i',d3i,8);  st('d3-iv',d3i);
+  sb('d3-r',d3r,9);  st('d3-rv',d3r);
+  sb('d3-re',d3re,18); st('d3-rev',d3re);
+
+  const newI  = Math.min(BASE.i+d3i,100);
+  const newM  = Math.min(BASE.m+d1m,100);
+  const newR  = Math.min(BASE.r+d1r+d2r+d3r,100);
+  const newRe = Math.min(BASE.re+d1re+d2re+d3re,100);
+
+  const setT = (bId,vId,dId,val,base) => {
+    const b=document.getElementById(bId), v=document.getElementById(vId), d=document.getElementById(dId);
+    if(b) b.style.width=val+'%';
+    if(v) v.textContent=val.toFixed(1);
+    const diff=+(val-base).toFixed(1);
+    if(d){ d.textContent=(diff>=0?'+':'')+diff.toFixed(1); d.className='delta '+(diff>0?'pos':'neu'); }
+  };
+  setT('tot-i','tot-iv','dlt-i',newI,BASE.i);
+  setT('tot-m','tot-mv','dlt-m',newM,BASE.m);
+  setT('tot-r','tot-rv','dlt-r',newR,BASE.r);
+  setT('tot-re','tot-rev','dlt-re',newRe,BASE.re);
+
+  const rp=document.getElementById('res-proj');
+  if(rp){ rp.textContent=newRe.toFixed(1); rp.style.color=newRe>BASE.re?'#0F6E56':'#2c2c2a'; }
+  const gp=document.getElementById('gap-val');
+  if(gp) gp.textContent=(100-newRe).toFixed(1);
+}
+</script>
+</body>
+</html>
