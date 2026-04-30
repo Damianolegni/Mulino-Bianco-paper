@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrice Strategica — Mulino Bianco</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --cream:   #faf8f3;
+    --warm:    #f2ede2;
+    --gold:    #c8962a;
+    --gold-l:  #e8c96a;
+    --green:   #2a5c3f;
+    --green-l: #4a8c64;
+    --brown:   #5c3d1e;
+    --ink:     #1a1a14;
+    --mid:     #6b6455;
+    --border:  #d8d0bc;
+    --d1:      #c8962a;   /* qualità — gold */
+    --d2:      #2a5c3f;   /* community — green */
+    --d3:      #7b4a8c;   /* nostalgia — plum */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 48px 32px 64px;
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  /* ── Header ── */
+  .header {
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-left {}
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .header-meta {
+    text-align: right;
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  /* ── Column headers ── */
+  .col-headers {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .col-h {
+    padding: 12px 18px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .col-h:first-child { padding-left: 0; }
+
+  /* ── Row ── */
+  .row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .row:hover { background: var(--warm); }
+
+  .cell {
+    padding: 28px 18px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #2e2a22;
+    border-right: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .cell:last-child { border-right: none; }
+
+  /* Direttrice label cell */
+  .cell-label {
+    padding: 28px 0 28px 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dir-num {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .dir-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .dir-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+  .tag-d1 { background: #fdf3dc; color: var(--d1); border: 1px solid #f0d898; }
+  .tag-d2 { background: #dff0e6; color: var(--d2); border: 1px solid #a8d4b8; }
+  .tag-d3 { background: #f0e4f8; color: var(--d3); border: 1px solid #c8a0dc; }
+
+  .accent-d1 { color: var(--d1); font-weight: 500; }
+  .accent-d2 { color: var(--d2); font-weight: 500; }
+  .accent-d3 { color: var(--d3); font-weight: 500; }
+
+  /* KPI chips */
+  .kpi {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .kpi-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .dot-d1 { background: var(--d1); }
+  .dot-d2 { background: var(--d2); }
+  .dot-d3 { background: var(--d3); }
+
+  /* Horizon bar */
+  .horizon {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .horizon-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .horizon-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+  .fill-d1 { background: var(--d1); width: 45%; }
+  .fill-d2 { background: var(--d2); width: 30%; }
+  .fill-d3 { background: var(--d3); width: 70%; }
+
+  /* Risk badge */
+  .risk {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .risk-high   { background: #fde8e4; color: #b03020; }
+  .risk-med    { background: #fdf3dc; color: #8a6010; }
+  .risk-low    { background: #dff0e6; color: #1a5c30; }
+
+  /* Source banner */
+  .source-banner {
+    margin-top: 40px;
+    padding: 18px 24px;
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.8;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .source-banner strong { color: var(--ink); }
+
+  /* Legend row */
+  .legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 12px;
+    color: var(--mid);
+  }
+  .leg-item { display: flex; align-items: center; gap: 7px; }
+  .leg-dot  { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* Decorative rule */
+  .rule { width: 40px; height: 2px; background: var(--gold); margin: 12px 0 20px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="eyebrow">Cap. 5 — Proposta di evoluzione</div>
+    <h1 class="title">Matrice <em>Strategica</em><br>delle Tre Direttrici</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="header-meta">
+    Brand Equity e Strategia di Marca<br>
+    Il Caso Mulino Bianco<br>
+    Damiano Legni · LUISS 2025–26
+  </div>
+</div>
+
+<!-- Column headers -->
+<div class="col-headers">
+  <div class="col-h">Direttrice</div>
+  <div class="col-h">Problema risolto</div>
+  <div class="col-h">KPI target</div>
+  <div class="col-h">Orizzonte</div>
+  <div class="col-h">Rischio principale</div>
+  <div class="col-h">Collegamento CBBE</div>
+</div>
+
+<!-- ROW 1: Direttrice 1 -->
+<div class="row">
+  <div class="cell-label">
+    <span class="dir-num">Direttrice 1</span>
+    <span class="dir-name">Qualità reale<br>degli ingredienti</span>
+    <span class="dir-tag tag-d1">Autenticità</span>
+  </div>
+
+  <div class="cell">
+    Q11 autenticità percepita = <span class="accent-d1">3,37/5</span> (il più basso della sezione meaning/response). Il brand è percepito come naturale simbolicamente, non realmente. La promessa comunicativa non è supportata dalla composizione del prodotto.
+  </div>
+
+  <div class="cell">
+    <div class="kpi"><span class="kpi-dot dot-d1"></span>Q5 naturalità: 3,47 → <strong>4,1+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d1"></span>Q11 autenticità: 3,37 → <strong>3,9+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d1"></span>Q7 prezzo-qualità: 3,43 → <strong>3,8+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d1"></span>Brand meaning: 72,8 → <strong>82+/100</strong></div>
+  </div>
+
+  <div class="cell">
+    <div class="horizon">
+      <span style="font-size:12px;color:var(--mid);">2–4 anni</span>
+      <div class="horizon-bar"><div class="horizon-fill fill-d1"></div></div>
+      <span style="font-size:11px;color:var(--mid);">Riformulazione 2025–26<br>Comunicazione 2026–27</span>
+    </div>
+  </div>
+
+  <div class="cell">
+    <span class="risk risk-high">Rischio alto</span><br>
+    <strong>Greenwashing percepito</strong> se la comunicazione di sostenibilità precede la riformulazione effettiva del prodotto. Q11 basso indica che i consumatori sono già diffidenti. Azione correttiva: riformulare prima, comunicare dopo.
+  </div>
+
+  <div class="cell">
+    Impatta direttamente su <span class="accent-d1">Brand Meaning</span> (+9,2 pt stimati). Effetto indiretto su Brand Response tramite aumento della credibilità. Colma il principale gap rilevato dal sondaggio primario.
+  </div>
+</div>
+
+<!-- ROW 2: Direttrice 2 -->
+<div class="row">
+  <div class="cell-label">
+    <span class="dir-num">Direttrice 2</span>
+    <span class="dir-name">Community digitale<br>a bassa soglia</span>
+    <span class="dir-tag tag-d2">Coinvolgimento</span>
+  </div>
+
+  <div class="cell">
+    Gap di <span class="accent-d2">29,8 punti</span> tra Brand Response (72,3) e Brand Resonance (42,5). Il brand genera emozione ma non azione. Q14 social following = 1,29/5 e Q15 senso di comunità = 1,80/5: i due dati più critici dell'intero questionario.
+  </div>
+
+  <div class="cell">
+    <div class="kpi"><span class="kpi-dot dot-d2"></span>Q14 social: 1,29 → <strong>3,0+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d2"></span>Q15 comunità: 1,80 → <strong>3,5+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d2"></span>Q12 acquisto reg.: 2,46 → <strong>3,2+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d2"></span>Brand Resonance: 42,5 → <strong>58+/100</strong></div>
+  </div>
+
+  <div class="cell">
+    <div class="horizon">
+      <span style="font-size:12px;color:var(--mid);">12–24 mesi</span>
+      <div class="horizon-bar"><div class="horizon-fill fill-d2"></div></div>
+      <span style="font-size:11px;color:var(--mid);">Lancio L1 2025<br>L2–L3 rollout 2026</span>
+    </div>
+  </div>
+
+  <div class="cell">
+    <span class="risk risk-med">Rischio medio</span><br>
+    <strong>Sovrastima della partecipazione</strong>: Q18 co-design = 2,40/5 con 13/35 fortemente contrari. Mitigazione: architettura a tre livelli progressivi (micro-engagement → contributo leggero → co-creazione opt-in). Non forzare la partecipazione strutturata.
+  </div>
+
+  <div class="cell">
+    Moltiplicatore diretto di <span class="accent-d2">Brand Resonance</span>: è l'unica direttrice che agisce direttamente sul vertice della piramide CBBE. Impatto atteso: +15,5 pt, colmando il gap vs stima qualitativa. Genera cross-effects (Keller, 2016) tra canali.
+  </div>
+</div>
+
+<!-- ROW 3: Direttrice 3 -->
+<div class="row">
+  <div class="cell-label">
+    <span class="dir-num">Direttrice 3</span>
+    <span class="dir-name">Frame<br>"Nostalgia Futura"</span>
+    <span class="dir-tag tag-d3">Narrativa</span>
+  </div>
+
+  <div class="cell">
+    Rischio di <span class="accent-d3">brand calcificazione</span>: identità fortemente associata agli anni '80 rischia di non attrarre under 30. Tuttavia Q9 (ricordi infanzia = 4,00/5 anche su campione under 30) dimostra che la nostalgia indiretta funziona — va solo riorientata verso il futuro.
+  </div>
+
+  <div class="cell">
+    <div class="kpi"><span class="kpi-dot dot-d3"></span>Q19 evoluzione: 3,43 → <strong>4,0+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d3"></span>Q2 top-of-mind: 3,74 → <strong>4,2+</strong> (u30)</div>
+    <div class="kpi"><span class="kpi-dot dot-d3"></span>Q13 raccomanda: 2,74 → <strong>3,5+</strong></div>
+    <div class="kpi"><span class="kpi-dot dot-d3"></span>Brand Identity: 84,6 → <strong>90+/100</strong> (u30)</div>
+  </div>
+
+  <div class="cell">
+    <div class="horizon">
+      <span style="font-size:12px;color:var(--mid);">3–5 anni</span>
+      <div class="horizon-bar"><div class="horizon-fill fill-d3"></div></div>
+      <span style="font-size:11px;color:var(--mid);">Concept 2025–26<br>Deploy 2027–30</span>
+    </div>
+  </div>
+
+  <div class="cell">
+    <span class="risk risk-low">Rischio basso</span><br>
+    <strong>Incoerenza percepita</strong> con il heritage se l'evoluzione visiva è troppo brusca. Mitigazione: mantenere il grano come elemento identitario irrinunciabile e la struttura valoriale (natura, famiglia, cura) — cambia l'estetica, non i valori. Validato da Q19 = 3,43/5.
+  </div>
+
+  <div class="cell">
+    Rafforza <span class="accent-d3">Brand Identity</span> nei segmenti giovani (+5–8 pt stimati) e <span class="accent-d3">Brand Response</span> tramite riattivazione emotiva cross-generazionale. Effetto indiretto su Resonance per traino. La più ambiziosa ma la più duratura.
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:var(--d1);"></div>D1 — Qualità reale</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--d2);"></div>D2 — Community digitale</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--d3);"></div>D3 — Nostalgia futura</div>
+  <div class="leg-item" style="margin-left:auto;">
+    <span class="risk risk-low" style="margin:0;">Basso</span>&nbsp;
+    <span class="risk risk-med" style="margin:0;">Medio</span>&nbsp;
+    <span class="risk risk-high" style="margin:0;">Alto</span>
+  </div>
+</div>
+
+<!-- Source banner -->
+<div class="source-banner">
+  <div>
+    <strong>Fonte dati KPI target</strong><br>
+    Elaborazione propria su dati sondaggio primario (n=35, A.A. 2025–26).<br>
+    Punteggi stimati con Simulatore Direttrici (Fig. 10) basato su Liu &amp; Wang (2019) e Keller (2016).
+  </div>
+  <div>
+    <strong>Nota metodologica</strong><br>
+    I KPI target sono stime qualitative a scopo esplorativo.<br>
+    Andrebbero validati con indagini longitudinali su campioni stratificati.
+  </div>
+  <div>
+    <strong>Versione interattiva simulatore</strong><br>
+    <a href="https://damianolegni.github.io/Mulino-Bianco-paper/simulatore_direttrici.html"
+       style="color:var(--gold);text-decoration:underline;font-size:12px;">
+      damianolegni.github.io/Mulino-Bianco-paper/simulatore_direttrici.html
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
